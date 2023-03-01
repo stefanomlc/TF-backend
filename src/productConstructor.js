@@ -1,7 +1,9 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export default class productConstructor {
     constructor ({ title, description, code, price, status, stock, category, thumbsnails}) { //falta corroborar que sean del tipo de cada uno
 
-        this.id = 0 //falta buscar el ID
+        this.id = uuidv4() //falta buscar el ID
         if (!title) throw new Error("falta el titulo")
         this.title = title
 

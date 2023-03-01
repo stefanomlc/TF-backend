@@ -1,5 +1,8 @@
 import fs from "fs";
 import { title } from "process";
+
+
+
 //const fs = require("fs");
 //const { } = require('fs')
 
@@ -10,14 +13,11 @@ export class Manager {
 
     getProductByLimit(identifcator, value) {
         //this.elements = []
-        
-        if(!this.elements){
-            //console.log("esta vacio")
-            
-        }else{
-            this.loadAllProducts()
+        //let products
+  
+        this.loadAllProducts()
             //console.log("tiene cosas", this.elements)
-        }
+        
         //this.loadAllProducts()
 
         if (identifcator && value) {
@@ -95,7 +95,7 @@ export class Manager {
 
         const products = await JSON.parse(loadProducts)
 
-        for (let key in products) {
+        for  (let key in products) {
             this.elements.push(products[key]);
         }
         //console.log(this.elements)

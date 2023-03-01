@@ -1,0 +1,35 @@
+<h1>Todos los productos </h1>
+<h2>en tiempo real</h2>
+
+<div class="container-lg d-flex">
+    <h2>Cargar</h2>
+    <P>Nombre:</P>
+    <input id="inputTitle" type="text" >
+    <P>Descripción:</P>
+    <input id="inputDescription" type="text">
+    <P>Precio:</P>
+    <input id="inputPrice" type="number">
+    <P>Imagen:</P>
+    <input id="inputThumbnail" type="text">
+    <P>Code:</P>
+    <input id="inputCode" type="text">
+    <P>Stock:</P>
+    <input id="inputStock" type="number">
+    </div>
+    <button id="btnNuevoProd">Enviar</button>
+
+
+
+<h2>Todos los productos</h2>
+<div id="products"></div>
+{{!-- <ul>
+    {{#each allProducts}}
+    <h3>Producto: {{this.title}}</h3>
+    <li>Desscripción: {{this.description}}</li>
+    <li>Stock: {{this.stock}}</li>
+    <li>Precio: {{this.price}}</li>
+    {{/each}}
+</ul> --}}
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/realtimeproducts.js"></script>

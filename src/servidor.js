@@ -6,7 +6,7 @@ import { cartManager } from "./managers/cartManager.js";
 //import routerCart from './routerCart.js';
 
 //socket.io
-import {Server} from "socket.io";
+import {Server, Socket} from "socket.io";
 
 //handlebars
 import {engine} from 'express-handlebars'
@@ -108,6 +108,14 @@ app.post('/api/carts',(req,res) =>{
 
 } )
 
+//real time products
+app.get("/realtimeproducts",(req, res) => {
+    let products = manager.getProductByLimit()
+
+    res.render("realTimeProducts", {allProducts: products})
+
+})
+
 // hay que crear una constante para vincular el servidor
 const servidorConectado = app.listen(8080, () => {
     console.log('Acceso  al servidor listo!')
@@ -115,3 +123,16 @@ const servidorConectado = app.listen(8080, () => {
 
 //creo el servidor en base a lo anterior
 const io = new Server(servidorConectado)
+
+io.on("connection", socket => {
+    console.log("nuevo cliente conectado")
+    
+    socket.on("newProduct", prod => {
+        manager.saveProduct(prod)
+        io.sockets.emit("updateProducts", manager.loadAllProducts())
+    })
+
+    socket.on("refresh", () => {
+        io.sockets.emit("updateProducts", manager.loadAllProducts())
+    })
+})
